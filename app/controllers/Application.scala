@@ -1,12 +1,18 @@
 package controllers
 
-import play.api._
 import play.api.mvc._
 
 object Application extends Controller {
-  
+
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Redirect(routes.Application.summary)
   }
-  
+
+  def summary = Action {
+    org.kohsuke.github.GitHub.connect()
+    Redirect(routes.Application.settings)
+  }
+
+  def settings = TODO
+
 }
